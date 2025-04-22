@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arabic Grammar Exam</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd;
+      padding: 1rem;
+    }.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  color: #00796b;
+}
+
+label {
+  font-weight: bold;
+}
+
+.question {
+  margin-bottom: 1.5rem;
+}
+
+.options label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: normal;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  width: 100%;
+  background-color: #00796b;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.correct-answer {
+  color: green;
+  font-weight: bold;
+}
+
+.wrong-answer {
+  color: red;
+}
+
+.summary {
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container" id="examContainer">
+    <h2>امتحان القواعد العربية</h2>
+    <form id="examForm">
+      <label for="studentName">Name:</label>
+      <input type="text" id="studentName" required /><!-- Questions -->
+ <div class="question" data-correct="ب. قَلَمٌ">
+  <p>1. أيُّ الكلماتِ الآتيةِ اسمٌ؟</p>
+  <div class="options">
+    <label><input type="radio" name="q1" value="ب. قَلَمٌ" required> قَلَمٌ</label>
+    <label><input type="radio" name="q1" value="أ. يَذْهَبُ"> يَذْهَبُ</label>
+    <label><input type="radio" name="q1" value="ج. اُكْتُبْ"> اُكْتُبْ</label>
+    <label><input type="radio" name="q1" value="د. مِنْ"> مِنْ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. فعلٌ مضارعٌ">
+  <p>2. ما نوعُ الكلمةِ "يَكْتُبُ"؟</p>
+  <div class="options">
+    <label><input type="radio" name="q2" value="أ. اسمٌ" required> اسمٌ</label>
+    <label><input type="radio" name="q2" value="ب. فعلٌ ماضٍ"> فعلٌ ماضٍ</label>
+    <label><input type="radio" name="q2" value="ج. فعلٌ مضارعٌ"> فعلٌ مضارعٌ</label>
+    <label><input type="radio" name="q2" value="د. حرفٌ"> حرفٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. حرفٌ">
+  <p>3. "في" نوعُ الكلمةِ هو؟</p>
+  <div class="options">
+    <label><input type="radio" name="q3" value="أ. اسمٌ" required> اسمٌ</label>
+    <label><input type="radio" name="q3" value="ب. فعلٌ"> فعلٌ</label>
+    <label><input type="radio" name="q3" value="ج. حرفٌ"> حرفٌ</label>
+    <label><input type="radio" name="q3" value="د. أمرٌ"> أمرٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. جَلَسَ">
+  <p>4. أيُّ الكلماتِ الآتيةِ فعلٌ ماضٍ؟</p>
+  <div class="options">
+    <label><input type="radio" name="q4" value="أ. يَجْلِسُ" required> يَجْلِسُ</label>
+    <label><input type="radio" name="q4" value="ب. اجْلِسْ"> اجْلِسْ</label>
+    <label><input type="radio" name="q4" value="ج. جَلَسَ"> جَلَسَ</label>
+    <label><input type="radio" name="q4" value="د. لَا تَجْلِسْ"> لَا تَجْلِسْ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="أ. يَذْهَبُ">
+  <p>5. الفعلُ المضارعُ من "ذَهَبَ" هو؟</p>
+  <div class="options">
+    <label><input type="radio" name="q5" value="أ. يَذْهَبُ" required> يَذْهَبُ</label>
+    <label><input type="radio" name="q5" value="ب. اذْهَبْ"> اذْهَبْ</label>
+    <label><input type="radio" name="q5" value="ج. ذَاهِبٌ"> ذَاهِبٌ</label>
+    <label><input type="radio" name="q5" value="د. ذَهَبْتُ"> ذَهَبْتُ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. نهيٌ">
+  <p>6. "لَا تَكْذِبْ" يدلُّ على؟</p>
+  <div class="options">
+    <label><input type="radio" name="q6" value="أ. أمرٌ" required> أمرٌ</label>
+    <label><input type="radio" name="q6" value="ب. نهيٌ"> نهيٌ</label>
+    <label><input type="radio" name="q6" value="ج. مضارعٌ"> مضارعٌ</label>
+    <label><input type="radio" name="q6" value="د. ماضٍ"> ماضٍ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. اُكْتُبْ الدَّرْسَ">
+  <p>7. أيُّ الجُمَلِ فيها أمرٌ؟</p>
+  <div class="options">
+    <label><input type="radio" name="q7" value="أ. لَا تَكْتُبْ" required> لَا تَكْتُبْ</label>
+    <label><input type="radio" name="q7" value="ب. كَتَبَ الوَلَدُ"> كَتَبَ الوَلَدُ</label>
+    <label><input type="radio" name="q7" value="ج. اُكْتُبْ الدَّرْسَ"> اُكْتُبْ الدَّرْسَ</label>
+    <label><input type="radio" name="q7" value="د. الكِتَابُ جَدِيدٌ"> الكِتَابُ جَدِيدٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. لَا تَلعَبْ في القِسْمِ">
+  <p>8. أيُّ الجُمَلِ فيها نهيٌ؟</p>
+  <div class="options">
+    <label><input type="radio" name="q8" value="أ. اِقْرَأْ الكِتَابَ" required> اِقْرَأْ الكِتَابَ</label>
+    <label><input type="radio" name="q8" value="ب. لَا تَلعَبْ في القِسْمِ"> لَا تَلعَبْ في القِسْمِ</label>
+    <label><input type="radio" name="q8" value="ج. يَقْرَأُ أَحْمَدُ"> يَقْرَأُ أَحْمَدُ</label>
+    <label><input type="radio" name="q8" value="د. كَتَبْتُ الدَّرْسَ"> كَتَبْتُ الدَّرْسَ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="أ. فاعلٌ">
+  <p>9. "مُدَرِّسٌ" مرفوعٌ لأنه؟</p>
+  <div class="options">
+    <label><input type="radio" name="q9" value="أ. فاعلٌ" required> فاعلٌ</label>
+    <label><input type="radio" name="q9" value="ب. مفعولٌ به"> مفعولٌ به</label>
+    <label><input type="radio" name="q9" value="ج. اسمٌ مجرورٌ"> اسمٌ مجرورٌ</label>
+    <label><input type="radio" name="q9" value="د. خبرٌ مجرورٌ"> خبرٌ مجرورٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. حرفُ الجرِّ">
+  <p>10. "إِلَى المَسْجِدِ" الكلمةُ "المَسْجِدِ" مجرورةٌ بسبب؟</p>
+  <div class="options">
+    <label><input type="radio" name="q10" value="أ. فعلٌ" required> فعلٌ</label>
+    <label><input type="radio" name="q10" value="ب. حرفُ الجرِّ"> حرفُ الجرِّ</label>
+    <label><input type="radio" name="q10" value="ج. فعلٌ مضارعٌ"> فعلٌ مضارعٌ</label>
+    <label><input type="radio" name="q10" value="د. اسمٌ"> اسمٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. اللَّبَنَ">
+  <p>11. الكلمةُ المنصوبةُ في الجملةِ "شَرِبَ الطِّفْلُ اللَّبَنَ" هي؟</p>
+  <div class="options">
+    <label><input type="radio" name="q11" value="أ. شَرِبَ" required> شَرِبَ</label>
+    <label><input type="radio" name="q11" value="ب. الطِّفْلُ"> الطِّفْلُ</label>
+    <label><input type="radio" name="q11" value="ج. اللَّبَنَ"> اللَّبَنَ</label>
+    <label><input type="radio" name="q11" value="د. لا شَيءَ"> لا شَيءَ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. تَلْعَبْ">
+  <p>12. الفعلُ المجزومُ في "لَا تَلْعَبْ" هو؟</p>
+  <div class="options">
+    <label><input type="radio" name="q12" value="أ. لَا" required> لَا</label>
+    <label><input type="radio" name="q12" value="ب. تَلْعَبْ"> تَلْعَبْ</label>
+    <label><input type="radio" name="q12" value="ج. تَلْعَبُ"> تَلْعَبُ</label>
+    <label><input type="radio" name="q12" value="د. لَعِبَ"> لَعِبَ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. حرفُ جرٍّ">
+  <p>13. "بِالقَلَمِ" الكلمةُ "القَلَمِ" مجرورةٌ بسبب؟</p>
+  <div class="options">
+    <label><input type="radio" name="q13" value="أ. فعلٌ" required> فعلٌ</label>
+    <label><input type="radio" name="q13" value="ب. حرفُ جرٍّ"> حرفُ جرٍّ</label>
+    <label><input type="radio" name="q13" value="ج. نهيٌ"> نهيٌ</label>
+    <label><input type="radio" name="q13" value="د. اسمٌ"> اسمٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. اسمٌ">
+  <p>14. ما نوعُ الكلمةِ "هَذَا"؟</p>
+  <div class="options">
+    <label><input type="radio" name="q14" value="أ. فعلٌ" required> فعلٌ</label>
+    <label><input type="radio" name="q14" value="ب. اسمٌ"> اسمٌ</label>
+    <label><input type="radio" name="q14" value="ج. حرفٌ"> حرفٌ</label>
+    <label><input type="radio" name="q14" value="د. أمرٌ"> أمرٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. إِلَى">
+  <p>15. أيُّ الكلماتِ حرفٌ؟</p>
+  <div class="options">
+    <label><input type="radio" name="q15" value="أ. يَكْتُبُ" required> يَكْتُبُ</label>
+    <label><input type="radio" name="q15" value="ب. مَكْتَبٌ"> مَكْتَبٌ</label>
+    <label><input type="radio" name="q15" value="ج. إِلَى"> إِلَى</label>
+    <label><input type="radio" name="q15" value="د. كَاتِبٌ"> كَاتِبٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. أمرٌ">
+  <p>16. "اِقْرَأْ" هو نوع من؟</p>
+  <div class="options">
+    <label><input type="radio" name="q16" value="أ. فعلٌ ماضٍ" required> فعلٌ ماضٍ</label>
+    <label><input type="radio" name="q16" value="ب. فعلٌ مضارعٌ"> فعلٌ مضارعٌ</label>
+    <label><input type="radio" name="q16" value="ج. أمرٌ"> أمرٌ</label>
+    <label><input type="radio" name="q16" value="د. حرفٌ"> حرفٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. اسمٌ مجرورٌ">
+  <p>17. "في المدرسة" كلمة "المدرسة" هي؟</p>
+  <div class="options">
+    <label><input type="radio" name="q17" value="أ. فعلٌ" required> فعلٌ</label>
+    <label><input type="radio" name="q17" value="ب. اسمٌ مجرورٌ"> اسمٌ مجرورٌ</label>
+    <label><input type="radio" name="q17" value="ج. فاعلٌ"> فاعلٌ</label>
+    <label><input type="radio" name="q17" value="د. مفعولٌ به"> مفعولٌ به</label>
+  </div>
+</div>
+
+<div class="question" data-correct="أ. مرفوعٌ">
+  <p>18. "الرجلُ" في الجملة "الرجلُ جالسٌ" مجرورٌ أم مرفوعٌ؟</p>
+  <div class="options">
+    <label><input type="radio" name="q18" value="أ. مرفوعٌ" required> مرفوعٌ</label>
+    <label><input type="radio" name="q18" value="ب. مجرورٌ"> مجرورٌ</label>
+    <label><input type="radio" name="q18" value="ج. منصوبٌ"> منصوبٌ</label>
+    <label><input type="radio" name="q18" value="د. مجزومٌ"> مجزومٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ج. مبتدأٌ">
+  <p>19. "الكتابُ" في الجملة "الكتابُ على الطاولةِ" هو؟</p>
+  <div class="options">
+    <label><input type="radio" name="q19" value="أ. فاعلٌ" required> فاعلٌ</label>
+    <label><input type="radio" name="q19" value="ب. مفعولٌ به"> مفعولٌ به</label>
+    <label><input type="radio" name="q19" value="ج. مبتدأٌ"> مبتدأٌ</label>
+    <label><input type="radio" name="q19" value="د. خبرٌ"> خبرٌ</label>
+  </div>
+</div>
+
+<div class="question" data-correct="ب. ظرفٌ">
+  <p>20. "في" في الجملة "أدرس في البيت" هو؟</p>
+  <div class="options">
+    <label><input type="radio" name="q20" value="أ. فعلٌ" required> فعلٌ</label>
+    <label><input type="radio" name="q20" value="ب. ظرفٌ"> ظرفٌ</label>
+    <label><input type="radio" name="q20" value="ج. اسمٌ"> اسمٌ</label>
+    <label><input type="radio" name="q20" value="د. حرفٌ"> حرفٌ</label>
+  </div>
+</div>
+
+  <button type="submit">Finish Exam</button>
+</form>
+
+  </div>  <script>
+    const subjectKey = "lisanul-quran-responses";
+
+    document.getElementById("examForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("studentName").value.trim();
+      if (!name) {
+        alert("يرجى إدخال الاسم.");
+        return;
+      }
+
+      const questions = document.querySelectorAll(".question");
+      let score = 0;
+      const resultsHTML = [];
+
+      questions.forEach((question, index) => {
+        const correct = question.dataset.correct;
+        const input = question.querySelector("input[type='radio']:checked");
+        const selected = input ? input.value : "No Answer";
+
+        if (selected === correct) score++;
+
+        resultsHTML.push(`
+          <div class="summary">
+            <p><strong>السؤال ${index + 1}:</strong> ${question.querySelector("p").textContent}</p>
+            <p>إجابتك: <span class="${selected === correct ? 'correct-answer' : 'wrong-answer'}">${selected}</span></p>
+            <p>الإجابة الصحيحة: <span class="correct-answer">${correct}</span></p>
+          </div>
+        `);
+      });
+
+      const newResponse = { name, score };
+      const existing = JSON.parse(localStorage.getItem(subjectKey)) || [];
+      existing.push(newResponse);
+      localStorage.setItem(subjectKey, JSON.stringify(existing));
+
+      document.getElementById("examContainer").innerHTML = `
+        <h2>شكرًا، ${name}!</h2>
+        <p>درجتك: <strong>${score}/${questions.length}</strong>.</p>
+        ${resultsHTML.join("")}
+      `;
+    });
+  </script></body>
+</html>
