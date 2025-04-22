@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Exam Management</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #263238;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+    }
+    .subject-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .subject-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .subject-title {
+      font-weight: bold;
+      color: #263238;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .overview {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+    .input-link {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .action-button {
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .action-button:hover {
+      background-color: #004d40;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #263238;
+      color: white;
+    }
+    /* Password prompt styling */
+    #password-prompt {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    #password-container {
+      background-color: #263238;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+    #password-input {
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+    #password-submit {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #password-submit:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <header>Admin Portal - Manage Exam Links</header>
+  <div id="password-prompt">
+    <div id="password-container">
+      <h2>Enter Admin Password</h2>
+      <input type="password" id="password-input" placeholder="Enter password...">
+      <button id="password-submit" onclick="checkPassword()">Submit</button>
+      <p id="error-message" style="color: red; display: none;">Incorrect password. Please try again.</p>
+    </div>
+  </div>
+
+  <main id="admin-content" style="display: none;">
+    <div class="subject-container">
+      <!-- THAFSEER -->
+      <div class="subject-card">
+        <div class="subject-title">THAFSEER</div>
+        <div class="overview">
+          <p id="thafseer-overview">No exam link shared yet.</p>
+        </div>
+        <input id="thafseer-link" class="input-link" type="text" placeholder="Paste exam link here">
+        <button class="action-button" onclick="shareLink('thafseer')">Share to Student Portal</button>
+        <button class="action-button" onclick="viewResponses('thafseer')">View Responses from Shared Exam Link</button>
+        <button class="action-button" onclick="downloadResponses('thafseer')">Download Responses as CSV</button>
+        <button class="action-button" onclick="removeLink('thafseer')">Remove Link</button>
+        <button class="action-button" onclick="deleteResponses('thafseer')">Delete Responses</button>
+      </div>
+
+      <!-- LISANUL QURAN -->
+      <div class="subject-card">
+        <div class="subject-title">LISANUL QURAN</div>
+        <div class="overview">
+          <p id="lisanul-quran-overview">No exam link shared yet.</p>
+        </div>
+        <input id="lisanul-quran-link" class="input-link" type="text" placeholder="Paste exam link here">
+        <button class="action-button" onclick="shareLink('lisanul-quran')">Share to Student Portal</button>
+        <button class="action-button" onclick="viewResponses('lisanul-quran')">View Responses from Shared Exam Link</button>
+        <button class="action-button" onclick="downloadResponses('lisanul-quran')">Download Responses as CSV</button>
+        <button class="action-button" onclick="removeLink('lisanul-quran')">Remove Link</button>
+        <button class="action-button" onclick="deleteResponses('lisanul-quran')">Delete Responses</button>
+      </div>
+
+      <!-- DUROOS -->
+      <div class="subject-card">
+        <div class="subject-title">DUROOS</div>
+        <div class="overview">
+          <p id="duroos-overview">No exam link shared yet.</p>
+        </div>
+        <input id="duroos-link" class="input-link" type="text" placeholder="Paste exam link here">
+        <button class="action-button" onclick="shareLink('duroos')">Share to Student Portal</button>
+        <button class="action-button" onclick="viewResponses('duroos')">View Responses from Shared Exam Link</button>
+        <button class="action-button" onclick="downloadResponses('duroos')">Download Responses as CSV</button>
+        <button class="action-button" onclick="removeLink('duroos')">Remove Link</button>
+        <button class="action-button" onclick="deleteResponses('duroos')">Delete Responses</button>
+      </div>
+
+      <!-- FIQH -->
+      <div class="subject-card">
+        <div class="subject-title">FIQH</div>
+        <div class="overview">
+          <p id="fiqh-overview">No exam link shared yet.</p>
+        </div>
+        <input id="fiqh-link" class="input-link" type="text" placeholder="Paste exam link here">
+        <button class="action-button" onclick="shareLink('fiqh')">Share to Student Portal</button>
+        <button class="action-button" onclick="viewResponses('fiqh')">View Responses from Shared Exam Link</button>
+        <button class="action-button" onclick="downloadResponses('fiqh')">Download Responses as CSV</button>
+        <button class="action-button" onclick="removeLink('fiqh')">Remove Link</button>
+        <button class="action-button" onclick="deleteResponses('fiqh')">Delete Responses</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>&copy; 2025 Hayathul Islam HSS. All Rights Reserved.</footer>
+
+  <script>
+    // Password protection functionality
+    const correctPassword = "AdNas";
+
+    function checkPassword() {
+      var enteredPassword = document.getElementById("password-input").value;
+      if (enteredPassword === correctPassword) {
+        document.getElementById("password-prompt").style.display = "none";
+        document.getElementById("admin-content").style.display = "block";
+        loadLinks();  // Load shared links on successful password validation
+      } else {
+        document.getElementById("error-message").style.display = "block";
+      }
+    }
+
+    function shareLink(subject) {
+      var link = document.getElementById(subject + '-link').value;
+      if (link) {
+        localStorage.setItem(subject, link);
+        alert(subject.charAt(0).toUpperCase() + subject.slice(1) + " exam link shared to Student Portal.");
+        loadLinks();  // Reload links to update the overview
+      } else {
+        alert("Please enter a valid link.");
+      }
+    }
+
+    function viewResponses(subject) {
+      // Get the stored responses for the specific subject
+      var responses = JSON.parse(localStorage.getItem(subject + '-responses')) || [];
+      
+      if (responses.length > 0) {
+        let responseDetails = "Responses for " + subject + ":\n";
+        responses.forEach((response, index) => {
+          responseDetails += "\nStudent: " + response.name + " | Score: " + response.score;
+        });
+        alert(responseDetails);
+      } else {
+        alert("No responses yet for this exam.");
+      }
+    }
+
+    function downloadResponses(subject) {
+      var responses = JSON.parse(localStorage.getItem(subject + '-responses')) || [];
+      
+      if (responses.length > 0) {
+        var csvContent = "Student Name, Score\n";
+        responses.forEach(response => {
+          csvContent += `${response.name}, ${response.score}\n`;
+        });
+
+        // Create a Blob and download it as a CSV file
+        var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        var link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = subject + "_responses.csv";
+        link.click();
+      } else {
+        alert("No responses to download.");
+      }
+    }
+
+    function removeLink(subject) {
+      localStorage.removeItem(subject);
+      alert("Exam link for " + subject + " has been removed.");
+      loadLinks();  // Reload links to update the overview
+    }
+
+    function deleteResponses(subject) {
+      localStorage.removeItem(subject + '-responses');
+      alert("All responses for " + subject + " have been deleted.");
+    }
+
+    // Function to load the links overview when the admin accesses the portal
+    function loadLinks() {
+      var subjects = ["thafseer", "lisanul-quran", "duroos", "fiqh"];
+      subjects.forEach(function(subject) {
+        var link = localStorage.getItem(subject);
+        var overviewElement = document.getElementById(subject + '-overview');
+        if (link) {
+          overviewElement.textContent = "Exam link: " + link;
+        } else {
+          overviewElement.textContent = "No exam link shared yet.";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
