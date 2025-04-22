@@ -1,0 +1,221 @@
+<!-- exam.html (general template) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subject Exam</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd;
+      padding: 1rem;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #00796b;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    button {
+      width: 100%;
+      background-color: #00796b;
+      color: white;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .correct-answer { color: green; font-weight: bold; }
+    .wrong-answer { color: red; }
+    .summary {
+      margin-top: 2rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="examContainer">
+    <h2 id="subjectTitle">Loading...</h2>
+    <form id="examForm">
+      <label for="studentName">Your Name:</label>
+      <input type="text" id="studentName" required />
+      <div id="questionsArea"></div>
+      <button type="submit">Submit Exam</button>
+    </form>
+  </div>
+
+  <script>
+    const subjects = {
+      thafseer: {
+        title: "THAFSEER",
+        questions: [
+          {
+            q: 'What is the meaning of "Tafsir"?',
+            correct: "Explanation",
+            options: ["Explanation", "Prayer", "Charity"]
+          },
+          {
+            q: "Which Surah is considered the heart of the Quran?",
+            correct: "Surah Yaseen",
+            options: ["Surah Al-Baqarah", "Surah Yaseen", "Surah Fatiha"]
+          },
+          {
+            q: "Who revealed the Quran to Prophet Muhammad (PBUH)?",
+            correct: "Angel Jibreel (Gabriel)",
+            options: ["Angel Jibreel (Gabriel)", "Angel Mikail", "Angel Israfil"]
+          }
+        ]
+      },
+      fiqh: {
+        title: "FIQH",
+        questions: [
+          {
+            q: "What does Fiqh mean?",
+            correct: "Understanding",
+            options: ["Washing", "Understanding", "Praying"]
+          },
+          {
+            q: "How many obligatory prayers are there in Islam?",
+            correct: "5",
+            options: ["3", "5", "7"]
+          },
+          {
+            q: "Zakat is:",
+            correct: "A form of charity",
+            options: ["A prayer", "A form of charity", "A pilgrimage"]
+          }
+        ]
+      },
+      duroos: {
+        title: "DUROOS",
+        questions: [
+          {
+            q: "What is the main goal of Duroos?",
+            correct: "To understand religious teachings",
+            options: ["To recite poetry", "To understand religious teachings", "To memorize songs"]
+          },
+          {
+            q: "Who usually conducts Duroos in traditional settings?",
+            correct: "Ustadh or Scholar",
+            options: ["Student", "Ustadh or Scholar", "Doctor"]
+          },
+          {
+            q: "Duroos can include lessons from:",
+            correct: "Quran, Hadith, and Islamic History",
+            options: ["Only Quran", "Science and Math", "Quran, Hadith, and Islamic History"]
+          }
+        ]
+      },
+      "lisanul-quran": {
+        title: "LISANUL QURAN",
+        questions: [
+          {
+            q: "What does Lisanul Quran mean?",
+            correct: "Language of the Quran",
+            options: ["Prayer of the Quran", "Voice of the Quran", "Language of the Quran"]
+          },
+          {
+            q: "Which language is primarily studied in Lisanul Quran?",
+            correct: "Arabic",
+            options: ["Arabic", "Urdu", "English"]
+          },
+          {
+            q: "Why is Lisanul Quran important?",
+            correct: "To understand the original meaning of Quran",
+            options: ["To memorize Hadith", "To understand the original meaning of Quran", "To recite faster"]
+          }
+        ]
+      }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const subjectKey = urlParams.get("subject");
+    const subjectData = subjects[subjectKey];
+
+    const examContainer = document.getElementById("examContainer");
+    const subjectTitle = document.getElementById("subjectTitle");
+    const questionsArea = document.getElementById("questionsArea");
+
+    if (!subjectData) {
+      examContainer.innerHTML = `<h2 style="color: red;">Invalid or missing subject!</h2>`;
+    } else {
+      subjectTitle.textContent = `${subjectData.title} Exam`;
+
+      subjectData.questions.forEach((qObj, index) => {
+        const qId = `q${index}`;
+        const optionsHTML = qObj.options
+          .map(opt => `
+            <label>
+              <input type="radio" name="${qId}" value="${opt}" required /> ${opt}
+            </label>`)
+          .join("");
+        const questionHTML = `
+          <div class="question" data-correct="${qObj.correct}" data-id="${qId}">
+            <p>${index + 1}. ${qObj.q}</p>
+            <div class="options">${optionsHTML}</div>
+          </div>`;
+        questionsArea.insertAdjacentHTML("beforeend", questionHTML);
+      });
+    }
+
+    document.getElementById("examForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("studentName").value.trim();
+      if (!name) return alert("Enter your name.");
+
+      const questions = document.querySelectorAll(".question");
+      let score = 0;
+      const results = [];
+
+      questions.forEach((qEl, index) => {
+        const correct = qEl.dataset.correct;
+        const input = qEl.querySelector("input[type='radio']:checked");
+        const selected = input ? input.value : "No Answer";
+
+        if (selected === correct) score++;
+
+        results.push(`
+          <div class="summary">
+            <p><strong>Q${index + 1}:</strong> ${qEl.querySelector("p").textContent}</p>
+            <p>Your Answer: <span class="${selected === correct ? 'correct-answer' : 'wrong-answer'}">${selected}</span></p>
+            <p>Correct Answer: <span class="correct-answer">${correct}</span></p>
+          </div>
+        `);
+      });
+
+      const storedKey = `${subjectKey}-responses`;
+      const allResponses = JSON.parse(localStorage.getItem(storedKey)) || [];
+      allResponses.push({ name, score });
+      localStorage.setItem(storedKey, JSON.stringify(allResponses));
+
+      examContainer.innerHTML = `
+        <h2>Thank you, ${name}!</h2>
+        <p>You scored <strong>${score}/${questions.length}</strong>.</p>
+        ${results.join("")}
+      `;
+    });
+  </script>
+</body>
+</html>
