@@ -1,6 +1,4 @@
-<!-- exam.html (general template) -->
-<!DOCTYPE html>
-<html lang="en">
+<!-- exam.html (general template with improved subject handling) --><!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -57,15 +55,13 @@
 <body>
   <div class="container" id="examContainer">
     <h2 id="subjectTitle">Loading...</h2>
-    <form id="examForm">
+    <form id="examForm" style="display: none">
       <label for="studentName">Your Name:</label>
       <input type="text" id="studentName" required />
       <div id="questionsArea"></div>
       <button type="submit">Submit Exam</button>
     </form>
-  </div>
-
-  <script>
+  </div>  <script>
     const subjects = {
       thafseer: {
         title: "THAFSEER",
@@ -150,17 +146,20 @@
     };
 
     const urlParams = new URLSearchParams(window.location.search);
-    const subjectKey = urlParams.get("subject");
+    const subjectKey = urlParams.get("subject")?.toLowerCase();
     const subjectData = subjects[subjectKey];
 
     const examContainer = document.getElementById("examContainer");
     const subjectTitle = document.getElementById("subjectTitle");
     const questionsArea = document.getElementById("questionsArea");
+    const examForm = document.getElementById("examForm");
 
     if (!subjectData) {
-      examContainer.innerHTML = `<h2 style="color: red;">Invalid or missing subject!</h2>`;
+      subjectTitle.innerText = "Select a subject to begin the exam.";
+      questionsArea.innerHTML = '<p style="color:red;">Valid subjects: thafseer, fiqh, duroos, lisanul-quran</p>';
     } else {
       subjectTitle.textContent = `${subjectData.title} Exam`;
+      examForm.style.display = "block";
 
       subjectData.questions.forEach((qObj, index) => {
         const qId = `q${index}`;
@@ -216,6 +215,5 @@
         ${results.join("")}
       `;
     });
-  </script>
-</body>
+  </script></body>
 </html>
